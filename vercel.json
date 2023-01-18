@@ -1,0 +1,15 @@
+{
+    "name": "serverTest",
+    "version": 2,
+    "public": true,
+    "build":{
+        "src": "api/servet.ts",
+        "use": "@vercel/node"
+    },
+    "routes":[
+        {
+            "src": "/(.*)",
+            "dest": "server/server.ts"
+        }
+    ]
+}
