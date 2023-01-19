@@ -23,5 +23,5 @@ model Products {
   Name        String
   description String
   price       Float
-  img         String
+  img         String @db.LongText
 }
