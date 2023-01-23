@@ -32,7 +32,7 @@ export async function GetProducts(fastify: FastifyInstance) {
 
     })
 
-    fastify.get('/products/nameAll/:Name', async (request) => {
+    fastify.get('/products/:Name', async (request) => {
 
         const getProductName = z.object({
             Name: z.string()
@@ -46,7 +46,8 @@ export async function GetProducts(fastify: FastifyInstance) {
             },
             select: {
                 Name: true,
-                price: true
+                price: true,
+                description: true
             }
         })
 
