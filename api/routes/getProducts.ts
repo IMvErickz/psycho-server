@@ -47,7 +47,8 @@ export async function GetProducts(fastify: FastifyInstance) {
             select: {
                 Name: true,
                 price: true,
-                description: true
+                description: true,
+                img: true
             }
         })
 
