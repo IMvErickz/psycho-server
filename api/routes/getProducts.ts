@@ -12,14 +12,14 @@ export async function GetProducts(fastify: FastifyInstance) {
     fastify.get('/products/:id', async (request) => {
 
         const getProductName = z.object({
-            id: z.string()
+            Name: z.string()
         })
 
-        const {id} = getProductName.parse(request.params)
+        const {Name} = getProductName.parse(request.params)
 
-        const products = await prisma.products.findUnique({
+        const products = await prisma.products.findMany({
             where: {
-                id
+                Name
             },
             select: {
                 Name: true,
