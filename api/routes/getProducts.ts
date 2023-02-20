@@ -9,7 +9,7 @@ export async function GetProducts(fastify: FastifyInstance) {
         return{products}
     })
 
-    fastify.get('/products/:id', async (request) => {
+    fastify.get('/products/:Name', async (request) => {
 
         const getProductName = z.object({
             Name: z.string()
