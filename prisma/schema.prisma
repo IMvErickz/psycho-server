@@ -10,18 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model UserRegister {
-  id       String @id @unique @default(cuid())
-  Name     String
-  LastName String
-  Email    String @unique
-  password String
-}
-
 model Products {
   id          String @id @unique @default(cuid())
   Name        String
   description String
   price       Float
   img         String @db.LongText
+
+  ShoppingCart   ShoppingCart? @relation(fields: [shoppingCartId], references: [id])
+  shoppingCartId String?
+}
+
+model ShoppingCart {
+  id       String     @id @default(cuid())
+  products Products[]
 }
