@@ -15,7 +15,7 @@ export async function registerCart(fastify: FastifyInstance) {
         const { id } = cart.parse(request.params)
         const {idProduct} = product.parse(request.body)
         
-        await prisma.shoppingCart.update({
+        await prisma.cart.update({
             where: {
                 id
             },

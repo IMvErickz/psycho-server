@@ -9,17 +9,17 @@ export async function GetProducts(fastify: FastifyInstance) {
         return{products}
     })
 
-    fastify.get('/products/:Name', async (request) => {
+    fastify.get('/products/:id', async (request) => {
 
         const getProductName = z.object({
-            Name: z.string()
+            id: z.string()
         })
 
-        const {Name} = getProductName.parse(request.params)
+        const {id} = getProductName.parse(request.params)
 
         const products = await prisma.products.findMany({
             where: {
-                Name
+                id
             },
             select: {
                 Name: true,
