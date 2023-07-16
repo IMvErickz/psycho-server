@@ -1,10 +1,10 @@
 import Fastify from "fastify";
 import Cors from '@fastify/cors'
 
-import {RegisterUser} from './routes/registerUser'
+import { RegisterUser } from './routes/User/registerUser'
 import { RegisterProduct } from "./routes/registerProduct";
 import { GetProducts } from "./routes/getProducts";
-import { GetUser } from "./routes/getUser";
+import { GetUser } from "./routes/User/getUser";
 import { z } from "zod";
 import { randomUUID } from "crypto";
 import { prisma } from "../lib/prisma";
@@ -15,7 +15,7 @@ import { DeleteProductCar } from "./routes/deleteProductCar";
 async function start() {
     const fastify = Fastify({
         logger: true,
-        
+
     })
 
     await fastify.register(Cors, {
@@ -30,7 +30,7 @@ async function start() {
     await fastify.register(registerCart)
     await fastify.register(DeleteProductCar)
 
-     await fastify.listen({ port: 3838 })
+    await fastify.listen({ port: 3838 })
 }
 
 start()

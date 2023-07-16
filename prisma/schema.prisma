@@ -23,5 +23,17 @@ model Products {
 model Cart {
   id String @id @default(cuid())
 
-  products Products[]
+  user     User?
+  Products Products[]
+}
+
+model User {
+  id       String @id @default(cuid())
+  Name     String
+  email    String
+  password String
+  avatar   String
+
+  cart   Cart   @relation(fields: [userId], references: [id])
+  userId String @unique
 }

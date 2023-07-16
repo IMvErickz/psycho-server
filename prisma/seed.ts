@@ -1,13 +1,20 @@
+import { randomUUID } from "node:crypto";
 import { prisma } from "../lib/prisma";
 
 
 async function Main() {
-    await prisma.products.create({
+    await prisma.user.create({
         data: {
-            Name: "Chainsaw",
-            description: "Mangá Chaisaw",
-            img: "https://lh3.googleusercontent.com/pw/AJFCJaXGBbJ-xUyyngm2nKXb2nWgQZJkX-xaOMoPvDehW-u6Qw0xf3n7R8o22D20Q1mz4nTHtewHGlsF5KG_m1Sk-VfYriqC8jEQmhWs7Ki-Xzba_-yjVCoo5fBH5SBD0Kykbk3KaqheSzFy1qbwzvWh-jOg9A=w384-h592-s-no?authuser=0",
-            price: 39.90
+            email: 'erickspy2003@gmail.com',
+            password: 'erickpsy10',
+            Name: "Erick Santos",
+            id: randomUUID(),
+            avatar: "https://i.ytimg.com/vi/yJnhtMvU6ao/sddefault.jpg",
+            cart: {
+                create: {
+                    id: randomUUID()
+                }
+            }
         }
     })
 }
