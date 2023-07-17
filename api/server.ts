@@ -11,6 +11,9 @@ import { prisma } from "../lib/prisma";
 import { getCart } from "./routes/getShoppingCart";
 import { registerCart } from "./routes/registerShoppingCart";
 import { DeleteProductCar } from "./routes/deleteProductCar";
+import multipart from '@fastify/multipart'
+import { resolve } from 'node:path'
+import { Upload } from "./routes/upload/upload";
 
 async function start() {
     const fastify = Fastify({
@@ -22,6 +25,13 @@ async function start() {
         origin: true,
     })
 
+    await fastify.register(multipart)
+
+    await fastify.register(require('@fastify/static'), {
+        root: resolve(__dirname, 'uploads'),
+        prefix: '/upload'
+    })
+
     await fastify.register(RegisterUser)
     await fastify.register(RegisterProduct)
     await fastify.register(GetProducts)
@@ -29,6 +39,7 @@ async function start() {
     await fastify.register(getCart)
     await fastify.register(registerCart)
     await fastify.register(DeleteProductCar)
+    await fastify.register(Upload)
 
     await fastify.listen({ port: 3838 })
 }
